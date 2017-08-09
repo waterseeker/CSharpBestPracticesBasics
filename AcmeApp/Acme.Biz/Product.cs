@@ -12,6 +12,9 @@ namespace Acme.Biz
     /// </summary>
     public class Product
     {
+        public const double InchesPerMeter = 39.37;
+
+
         #region Constructors
         public Product()
         {
@@ -31,18 +34,18 @@ namespace Acme.Biz
 
             Console.WriteLine("Product instance has a name: " + ProductName);
         }
-#endregion 
+        #endregion
 
-        private DateTime availabilityDate;
+        #region Properties
 
-        public DateTime AvailabilityDate
+        private DateTime? availabilityDate;
+
+        public DateTime? AvailabilityDate
         {
             get { return availabilityDate; }
             set { availabilityDate = value; }
         }
 
-        
-        #region Properties
         public string ProductName
         {
             get { return productName; }
@@ -95,7 +98,9 @@ namespace Acme.Biz
 
             return "Hello " + ProductName +
                 " (" + ProductId + "): " +
-                ProductDescription;
+                ProductDescription +
+                " Available on: " +
+                AvailabilityDate?.ToShortDateString();
         }
     }
 }

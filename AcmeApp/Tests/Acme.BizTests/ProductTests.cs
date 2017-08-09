@@ -15,11 +15,17 @@ namespace Acme.Biz.Tests
         public void SayHelloTest()
         {
             //Arrange
+            var currentProduct = new Product();
+            currentProduct.ProductName = "Saw";
+            currentProduct.ProductId = 1;
+            currentProduct.ProductDescription = "15-inch steel blade hand saw";
+            var expected = "Hello Saw (1): 15-inch steel blade hand saw";
 
             //Act
+            var actual = currentProduct.SayHello();
 
             //Assert
-            Assert.Fail();
+            Assert.AreEqual(expected, actual);
         }
     }
 }

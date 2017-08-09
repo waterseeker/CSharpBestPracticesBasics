@@ -22,7 +22,11 @@ namespace Acme.Biz
             string productName,
             string productDescription) : this()
         {
+            this.ProductId = productId;
+            this.ProductName = productName;
+            this.ProductDescription = productDescription;
 
+            Console.WriteLine("Product instance has a name: " + ProductName);
         }
 
         private string productName;

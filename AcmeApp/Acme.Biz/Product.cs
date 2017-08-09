@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acme.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Acme.Biz
     /// </summary>
     public class Product
     {
+        #region Constructors
         public Product()
         {
             Console.WriteLine("Product instance created");
@@ -28,9 +30,9 @@ namespace Acme.Biz
 
             Console.WriteLine("Product instance has a name: " + ProductName);
         }
-
+#endregion 
         private string productName;
-
+        #region Properties
         public  string ProductName
         {
             get { return productName; }
@@ -50,9 +52,19 @@ namespace Acme.Biz
             get { return productId; }
             set { productId = value; }
         }
-
+        #endregion
         public string SayHello()
         {
+            var vendor = new Vendor();
+            vendor.SendWelcomeEmail("Message from Product");
+            
+
+            var emailService = new EmailService();
+            var confirmation = emailService.SendMessage("New Product", 
+                this.ProductName, "sales@abc.com");
+
+            var result = LoggingService.LogAction("saying hello");
+
             return "Hello " + ProductName +
                 " (" + ProductId + "): " +
                 ProductDescription;

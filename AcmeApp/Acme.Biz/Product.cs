@@ -16,6 +16,7 @@ namespace Acme.Biz
         public Product()
         {
             Console.WriteLine("Product instance created");
+            //this.ProductVendor = new Vendor();
         }
 
         //using " : this" after the parameterized constructor invokes the default constructor so 
@@ -31,13 +32,24 @@ namespace Acme.Biz
             Console.WriteLine("Product instance has a name: " + ProductName);
         }
 #endregion 
-        private string productName;
+
+        private DateTime availabilityDate;
+
+        public DateTime AvailabilityDate
+        {
+            get { return availabilityDate; }
+            set { availabilityDate = value; }
+        }
+
+        
         #region Properties
-        public  string ProductName
+        public string ProductName
         {
             get { return productName; }
             set { productName = value; }
         }
+        private string productName;
+
         private string productDescription;
         
         public string ProductDescription
@@ -52,11 +64,27 @@ namespace Acme.Biz
             get { return productId; }
             set { productId = value; }
         }
+
+        private Vendor productVendor;
+
+        public Vendor ProductVendor
+        {
+            get
+            {
+                if (productVendor == null)
+                {
+                    productVendor = new Vendor();
+                }
+                return productVendor;
+            }
+            set { productVendor = value; }
+        }
+
         #endregion
         public string SayHello()
         {
-            var vendor = new Vendor();
-            vendor.SendWelcomeEmail("Message from Product");
+            //var vendor = new Vendor();
+            //vendor.SendWelcomeEmail("Message from Product");
             
 
             var emailService = new EmailService();
